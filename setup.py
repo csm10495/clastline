@@ -2,8 +2,8 @@ from setuptools import setup
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(__file__))
-from clastline.clastline import __version__
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'clastline'))
+from __init__ import __version__
 
 setup(
     name='clastline',
