@@ -1,7 +1,7 @@
 import io
 import shutil
 
-from .clastline import cLastLine
+from . import cLastLine
 
 
 def test_simple():
