@@ -1,10 +1,9 @@
 '''
 This is the main implementation file for clastline
 '''
-import shutil
 import sys
 
-__version__ = '2.0.0'
+__version__ = '2.1.0'
 
 
 class cLastLine:
@@ -35,7 +34,7 @@ class cLastLine:
         If there has been data already written, writes spaces to effectively clear the line
         '''
         if self._lastLine != '':
-            self.write(shutil.get_terminal_size().columns * ' ', clearBeforeWrite=False)
+            self.write(len(self._lastLine) * ' ', clearBeforeWrite=False)
 
     def write(self, txt, clearBeforeWrite=True):
         '''

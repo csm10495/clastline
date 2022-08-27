@@ -12,8 +12,7 @@ def test_simple():
         cll.write('word')
         cll.write('test', clearBeforeWrite=False)
 
-    clearText = shutil.get_terminal_size().columns * ' '
-    assert stream.getvalue() == f'''hi\r{clearText}\rword\rtest\r\n'''
+    assert stream.getvalue() == f'''hi\r  \rword\rtest\r\n'''
 
 def test_last_line_empty():
     with cLastLine() as cll:
