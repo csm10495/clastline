@@ -1,27 +1,30 @@
-import os
+import io
 import shutil
-import unittest.mock
 
 from .clastline import cLastLine
 
 
 def test_simple():
-    with cLastLine() as cll:
+    stream = io.StringIO()
+
+    with cLastLine(stream) as cll:
         cll.write('hi')
         cll.write('word')
         cll.write('test', clearBeforeWrite=False)
 
     clearText = shutil.get_terminal_size().columns * ' '
-    assert cll._writtenData == f'''hi\r{clearText}\rword\rtest\r{os.linesep}'''
+    assert stream.getvalue() == f'''hi\r{clearText}\rword\rtest\r\n'''
 
-def test_nothing_written_on_nothing_written():
+def test_last_line_empty():
     with cLastLine() as cll:
         pass
 
-    assert cll._writtenData == ''
+    assert cll._lastLine == ''
 
 def test_one_line_with_alt_end():
-    with cLastLine(lineEnd='bleh') as cll:
+    stream = io.StringIO()
+
+    with cLastLine(stream, lineEnd='bleh') as cll:
         cll.write('a')
 
-    assert cll._writtenData == 'a\rbleh'
+    assert stream.getvalue() == 'a\rbleh'
