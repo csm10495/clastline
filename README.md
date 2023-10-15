@@ -1,3 +1,7 @@
+Notice: 
+
+I'm not really developing this anymore. Recommend using https://rich.readthedocs.io/en/stable/console.html#status as an alternative.
+
 # cLastLine
 
 Module to easily allow rewriting the last line in the terminal.
